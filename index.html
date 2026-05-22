@@ -1622,7 +1622,6 @@
   <!-- Buttons row -->
   <div style="text-align:center;margin-top:40px;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;" class="reveal">
     <button onclick="openReviewModal()" style="background:var(--gold);color:var(--navy);border:none;padding:14px 36px;border-radius:50px;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:0.25s;box-shadow:0 4px 20px rgba(245,197,24,0.3);" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">✍️ &nbsp;Write a Review</button>
-    <button onclick="openAdminLogin()" id="adminBtn" style="background:transparent;color:var(--text-muted);border:1px solid rgba(255,255,255,0.12);padding:13px 22px;border-radius:50px;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:0.25s;" onmouseover="this.style.borderColor='rgba(245,197,24,0.35)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='var(--text-muted)'">🔐 Admin Panel</button>
   </div>
   <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-top:10px;">Takes less than a minute. Your feedback means everything to us.</p>
 
@@ -1677,88 +1676,8 @@
   </div>
 </div>
 
-<!-- ═══ ADMIN LOGIN MODAL ═══ -->
-<div id="adminLoginModal" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.82);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px;">
-  <div style="background:#0d1b3e;border:1px solid rgba(245,197,24,0.25);border-radius:28px;padding:44px 40px;width:100%;max-width:420px;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.7);animation:modalIn 0.3s ease;">
-    <button onclick="closeAdminLogin()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.07);border:none;color:white;width:44px;height:44px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.2s;min-width:44px;min-height:44px;" onmouseover="this.style.background='rgba(245,197,24,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">✕</button>
-    <div style="text-align:center;margin-bottom:30px;">
-      <div style="width:64px;height:64px;background:rgba(245,197,24,0.12);border:2px solid rgba(245,197,24,0.3);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;">🔐</div>
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;">Admin Access</div>
-      <div style="color:var(--text-muted);font-size:0.82rem;margin-top:6px;">RivalHive Review Control Panel</div>
-    </div>
-    <div style="margin-bottom:18px;"><label style="font-size:0.82rem;color:var(--text-muted);display:block;margin-bottom:8px;font-weight:500;">Password</label><input id="adminPass" type="password" placeholder="Enter admin password" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:13px 14px;color:white;font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='rgba(245,197,24,0.45)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'" onkeydown="if(event.key==='Enter')doAdminLogin()"/></div>
-    <div id="loginError" style="color:#ff8c69;font-size:0.82rem;margin-bottom:14px;display:none;">⚠️ Incorrect password. Try again.</div>
-    <button onclick="doAdminLogin()" style="width:100%;padding:14px;background:var(--gold);color:var(--navy);border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;transition:0.25s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Login →</button>
-    <p style="text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:16px;">Only RivalHive team members have access.</p>
-  </div>
-</div>
-
-<!-- ═══ ADMIN PANEL MODAL ═══ -->
-<div id="adminPanel" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;">
-  <div style="background:#0d1b3e;border:1px solid rgba(245,197,24,0.2);border-radius:28px;padding:40px;width:100%;max-width:900px;margin:40px auto;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.7);animation:modalIn 0.3s ease;">
-
-    <!-- Header -->
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <div style="width:50px;height:50px;background:rgba(245,197,24,0.12);border:1.5px solid rgba(245,197,24,0.3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">⚙️</div>
-        <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;">Review Control Panel</div>
-          <div style="color:var(--text-muted);font-size:0.8rem;margin-top:3px;">Manage all customer reviews</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <span id="adminReviewCount" style="background:rgba(245,197,24,0.12);color:var(--gold);padding:6px 16px;border-radius:50px;font-size:0.82rem;font-weight:600;">0 reviews</span>
-        <span id="adminQuoteCount" style="background:rgba(245,197,24,0.12);color:var(--gold);padding:6px 16px;border-radius:50px;font-size:0.82rem;font-weight:600;">0 quotes</span>
-        <button onclick="closeAdminPanel()" style="background:rgba(255,255,255,0.07);border:none;color:white;padding:8px 18px;border-radius:50px;font-size:0.82rem;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;transition:0.2s;" onmouseover="this.style.background='rgba(255,80,80,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.07)'">✕ Close</button>
-      </div>
-    </div>
-
-    <div style="margin-bottom:34px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
-        <div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;">Quote Requests</div>
-          <div style="color:var(--text-muted);font-size:0.78rem;margin-top:3px;">Messages submitted from the Quick Project Brief form</div>
-        </div>
-      </div>
-      <div id="quoteGrid" style="display:flex;flex-direction:column;gap:12px;"></div>
-      <div id="quoteEmpty" style="text-align:center;padding:28px;border:1px dashed rgba(245,197,24,0.18);border-radius:16px;display:none;">
-        <p style="color:var(--text-muted);">No quote requests yet.</p>
-      </div>
-    </div>
-
-    <!-- Search + filter -->
-    <div style="display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
-      <input id="adminSearch" type="text" placeholder="🔍  Search by name, text, service..." oninput="renderAdminCards()" style="flex:1;min-width:200px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 14px;color:white;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;" onfocus="this.style.borderColor='rgba(245,197,24,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
-      <select id="adminFilter" onchange="renderAdminCards()" style="background:#0a1530;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 14px;color:white;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;">
-        <option value="all">All Stars</option>
-        <option value="5">★★★★★ (5)</option>
-        <option value="4">★★★★ (4)</option>
-        <option value="3">★★★ (3)</option>
-        <option value="2">★★ (2)</option>
-        <option value="1">★ (1)</option>
-      </select>
-    </div>
-
-    <!-- Admin cards -->
-    <div id="adminGrid" style="display:flex;flex-direction:column;gap:12px;"></div>
-
-    <!-- Empty admin -->
-    <div id="adminEmpty" style="text-align:center;padding:40px;display:none;">
-      <div style="font-size:2.5rem;margin-bottom:12px;">📭</div>
-      <p style="color:var(--text-muted);">No reviews match your search.</p>
-    </div>
-
-    <!-- Footer note -->
-    <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(245,197,24,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-      <p style="color:var(--text-muted);font-size:0.78rem;">⚠️ Deleted reviews are permanently removed and cannot be recovered.</p>
-      <button onclick="closeAdminPanel()" style="background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.2);color:var(--gold);padding:9px 22px;border-radius:50px;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:0.2s;" onmouseover="this.style.background='rgba(245,197,24,0.18)'" onmouseout="this.style.background='rgba(245,197,24,0.1)'">Done ✓</button>
-    </div>
-  </div>
-</div>
-
 <!-- ═══ SUCCESS TOAST ═══ -->
 <div id="toast" style="position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a3a2a;border:1px solid rgba(74,222,128,0.3);color:#4ade80;padding:14px 28px;border-radius:50px;font-size:0.88rem;font-weight:600;z-index:9000;opacity:0;transition:all 0.4s;pointer-events:none;white-space:nowrap;">✅ &nbsp;Review submitted! Thank you 🐝</div>
-<div id="deleteToast" style="position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#3a1a1a;border:1px solid rgba(255,100,100,0.3);color:#ff8c8c;padding:14px 28px;border-radius:50px;font-size:0.88rem;font-weight:600;z-index:9000;opacity:0;transition:all 0.4s;pointer-events:none;white-space:nowrap;">🗑️ &nbsp;Review deleted.</div>
 
 <style>
 @keyframes modalIn { 0% { opacity:0; transform:scale(0.92) translateY(30px); filter: blur(5px); } 100% { opacity:1; transform:scale(1) translateY(0); filter: blur(0); } }
@@ -1860,8 +1779,6 @@
 
 <script>
 const REVIEW_API = window.RIVALHIVE_REVIEW_API || '/api/reviews';
-const QUOTE_API = window.RIVALHIVE_QUOTE_API || '/api/quotes';
-const ADMIN_LOGIN_API = window.RIVALHIVE_ADMIN_LOGIN_API || '/api/admin/login';
 const STORAGE_KEY = 'rivalhive_reviews_preview_v1';
 const AVATAR_COLORS = [
   ['#f5c518','#d4a800','#0d1b3e'], ['#c87aff','#8b4fd4','white'],
@@ -1873,9 +1790,7 @@ const AVATAR_COLORS = [
 let selectedStar = 0;
 let activeFilter = 'all';
 let reviewsCache = [];
-let quotesCache = [];
 let reviewMode = 'connecting';
-let adminToken = sessionStorage.getItem('rivalhive_admin_token') || '';
 
 function $(id) { return document.getElementById(id); }
 function escapeHtml(value) {
@@ -1949,36 +1864,6 @@ async function saveReview(review) {
   reviewsCache = [...reviewsCache, { ...review, id: 'local_' + Date.now(), status: 'preview' }];
   saveLocalReviews(reviewsCache);
 }
-async function deleteReviewRemote(id) {
-  if (reviewMode !== 'shared') {
-    reviewsCache = reviewsCache.filter(r => r.id !== id);
-    saveLocalReviews(reviewsCache);
-    return;
-  }
-  const data = await apiFetch(REVIEW_API + '/' + encodeURIComponent(id), {
-    method: 'DELETE',
-    headers: { Authorization: 'Bearer ' + adminToken }
-  });
-  reviewsCache = Array.isArray(data.reviews) ? data.reviews : reviewsCache.filter(r => r.id !== id);
-}
-async function loadQuotesAdmin() {
-  const data = await apiFetch(QUOTE_API, {
-    headers: { Authorization: 'Bearer ' + adminToken }
-  });
-  quotesCache = Array.isArray(data.quotes) ? data.quotes : [];
-  renderQuoteCards();
-}
-async function saveQuoteRequest(quote) {
-  return apiFetch(QUOTE_API, { method: 'POST', body: JSON.stringify(quote) });
-}
-async function deleteQuoteRemote(id) {
-  const data = await apiFetch(QUOTE_API + '/' + encodeURIComponent(id), {
-    method: 'DELETE',
-    headers: { Authorization: 'Bearer ' + adminToken }
-  });
-  quotesCache = Array.isArray(data.quotes) ? data.quotes : quotesCache.filter(q => q.id !== id);
-}
-
 function updateStats(reviews) {
   const n = reviews.length, counts = {1:0,2:0,3:0,4:0,5:0};
   reviews.forEach(r => counts[r.stars]++);
@@ -2100,145 +1985,9 @@ function showToast(message) {
   t.style.transform = 'translateX(-50%) translateY(0)';
   setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, 3500);
 }
-function showDeleteToast() {
-  const t = $('deleteToast');
-  t.style.opacity = '1'; t.style.transform = 'translateX(-50%) translateY(0)';
-  setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(20px)'; }, 3000);
-}
-
-function openAdminLogin() {
-  $('adminLoginModal').style.display = 'flex';
-  $('adminPass').value = '';
-  $('loginError').style.display = 'none';
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => $('adminPass').focus(), 100);
-}
-function closeAdminLogin() { $('adminLoginModal').style.display = 'none'; document.body.style.overflow = ''; }
-$('adminLoginModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeAdminLogin(); });
-async function doAdminLogin() {
-  const pass = $('adminPass').value;
-  const err = $('loginError');
-  if (reviewMode !== 'shared') {
-    err.textContent = 'Admin actions require the review server. Run npm start or deploy server.js.';
-    err.style.display = 'block';
-    return;
-  }
-  try {
-    const data = await apiFetch(ADMIN_LOGIN_API, { method: 'POST', body: JSON.stringify({ password: pass }) });
-    adminToken = data.token;
-    sessionStorage.setItem('rivalhive_admin_token', adminToken);
-    closeAdminLogin(); openAdminPanel();
-  } catch {
-    err.textContent = 'Incorrect password or server is not configured.';
-    err.style.display = 'block';
-    $('adminPass').value = '';
-    $('adminPass').focus();
-  }
-}
-function openAdminPanel() {
-  $('adminPanel').style.display = 'flex';
-  $('adminSearch').value = '';
-  $('adminFilter').value = 'all';
-  document.body.style.overflow = 'hidden';
-  renderAdminCards();
-  loadQuotesAdmin().catch(error => {
-    quotesCache = [];
-    renderQuoteCards();
-    console.warn(error);
-  });
-}
-function closeAdminPanel() { $('adminPanel').style.display = 'none'; document.body.style.overflow = ''; }
-$('adminPanel').addEventListener('click', e => { if (e.target === e.currentTarget) closeAdminPanel(); });
-function renderAdminCards() {
-  let reviews = [...reviewsCache];
-  const search = $('adminSearch').value.toLowerCase();
-  const starFilter = $('adminFilter').value;
-  if (starFilter !== 'all') reviews = reviews.filter(r => Number(r.stars) === Number(starFilter));
-  if (search) reviews = reviews.filter(r => (r.name + r.text + (r.service || '') + (r.loc || '')).toLowerCase().includes(search));
-  const grid = $('adminGrid');
-  const empty = $('adminEmpty');
-  $('adminReviewCount').textContent = reviewsCache.length + ' review' + (reviewsCache.length === 1 ? '' : 's');
-  if (!reviews.length) { grid.innerHTML = ''; empty.style.display = 'block'; renderQuoteCards(); return; }
-  empty.style.display = 'none';
-  grid.innerHTML = [...reviews].reverse().map(r => {
-    const [bg1, bg2, tc] = getColor(r.name), ini = getInitials(r.name);
-    return `<div class="admin-review-row">
-      <div class="review-avatar" style="background:linear-gradient(135deg,${bg1},${bg2});color:${tc};">${ini}</div>
-      <div class="admin-review-main">
-        <div class="admin-review-head">
-          <span class="review-name">${escapeHtml(r.name)}</span>
-          ${r.loc ? `<span class="review-meta">${escapeHtml(r.loc)}</span>` : ''}
-          ${r.service ? `<span class="review-service">${escapeHtml(r.service)}</span>` : ''}
-          <span>${starsHtml(r.stars, '0.85rem')}</span>
-          <span class="review-meta">${timeAgo(r.date)}</span>
-        </div>
-        <p class="review-text">"${escapeHtml(r.text)}"</p>
-      </div>
-      <button class="icon-danger" onclick="deleteReview('${escapeHtml(r.id)}')" title="Delete review">Delete</button>
-    </div>`;
-  }).join('');
-  renderQuoteCards();
-}
-function renderQuoteCards() {
-  const search = ($('adminSearch')?.value || '').toLowerCase();
-  let quotes = [...quotesCache];
-  if (search) {
-    quotes = quotes.filter(q => (q.name + q.contact + q.service + q.message).toLowerCase().includes(search));
-  }
-  const grid = $('quoteGrid');
-  const empty = $('quoteEmpty');
-  if ($('adminQuoteCount')) $('adminQuoteCount').textContent = quotesCache.length + ' quote' + (quotesCache.length === 1 ? '' : 's');
-  if (!grid || !empty) return;
-  if (!quotes.length) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
-  empty.style.display = 'none';
-  grid.innerHTML = [...quotes].reverse().map(q => {
-    const safeName = escapeHtml(q.name);
-    const safeContact = escapeHtml(q.contact);
-    const safeService = escapeHtml(q.service);
-    const safeMessage = escapeHtml(q.message || 'No extra details added.');
-    const subject = encodeURIComponent('RivalHive quote follow-up - ' + q.service);
-    const body = encodeURIComponent(`Hi ${q.name},\n\nThanks for contacting RivalHive about ${q.service}.\n\n`);
-    return `<div class="admin-review-row">
-      <div class="review-avatar" style="background:linear-gradient(135deg,#f5c518,#d4a800);color:#0d1b3e;">₹</div>
-      <div class="admin-review-main">
-        <div class="admin-review-head">
-          <span class="review-name">${safeName}</span>
-          <span class="review-service">${safeService}</span>
-          <span class="review-meta">${timeAgo(q.date)}</span>
-        </div>
-        <p class="review-meta" style="margin-bottom:8px;">${safeContact}</p>
-        <p class="review-text">"${safeMessage}"</p>
-        <div class="review-foot">
-          <a class="review-service" href="mailto:${safeContact}?subject=${subject}&body=${body}" style="text-decoration:none;">Reply</a>
-          <span class="review-verified">Quote Request</span>
-        </div>
-      </div>
-      <button class="icon-danger" onclick="deleteQuote('${escapeHtml(q.id)}')" title="Delete quote request">Delete</button>
-    </div>`;
-  }).join('');
-}
-async function deleteReview(id) {
-  if (!confirm('Delete this review? This cannot be undone.')) return;
-  try {
-    await deleteReviewRemote(id);
-    updateStats(reviewsCache); renderCards(activeFilter); renderAdminCards(); showDeleteToast();
-  } catch (error) {
-    alert(error.message || 'Could not delete review.');
-  }
-}
-async function deleteQuote(id) {
-  if (!confirm('Delete this quote request? This cannot be undone.')) return;
-  try {
-    await deleteQuoteRemote(id);
-    renderQuoteCards();
-    showDeleteToast();
-  } catch (error) {
-    alert(error.message || 'Could not delete quote request.');
-  }
-}
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeReviewModal(); closeAdminLogin(); closeAdminPanel(); }
+  if (e.key === 'Escape') closeReviewModal();
 });
 (function initReviews(){
   setReviewMode('connecting');
@@ -2423,15 +2172,36 @@ document.addEventListener('keydown', e => {
   });
 
   // Form submit — composes mailto
+  function openEmailComposer({ subject, body } = {}) {
+    const email = 'rivalhive26@gmail.com';
+    const encodedSubject = encodeURIComponent(subject || 'Project enquiry for RivalHive');
+    const encodedBody = encodeURIComponent(body || 'Hi RivalHive Team,\n\nI would like to discuss a project.\n\n');
+    const gmailAppUrl = `googlegmail://co?to=${email}&subject=${encodedSubject}&body=${encodedBody}`;
+    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodedSubject}&body=${encodedBody}`;
+    const mailtoUrl = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = gmailAppUrl;
+      setTimeout(() => { window.location.href = mailtoUrl; }, 900);
+      return;
+    }
+
+    const opened = window.open(gmailWebUrl, '_blank', 'noopener');
+    if (!opened) {
+      window.location.href = mailtoUrl;
+      return;
+    }
+    setTimeout(() => {
+      try {
+        if (opened.closed) window.location.href = mailtoUrl;
+      } catch {}
+    }, 900);
+  }
+
   function openEmail(event) {
     if (event) event.preventDefault();
-    const email = 'rivalhive26@gmail.com';
-    const subject = encodeURIComponent('Project enquiry for RivalHive');
-    const body = encodeURIComponent('Hi RivalHive Team,\n\nI would like to discuss a project.\n\n');
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
-    const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
-    const opened = window.open(gmailUrl, '_blank', 'noopener');
-    if (!opened) window.location.href = mailtoUrl;
+    openEmailComposer();
   }
 
   // Form submit — opens a prewritten email for static hosting
@@ -2447,16 +2217,13 @@ document.addEventListener('keydown', e => {
       status.style.color = '#ff8c69';
       return;
     }
-    const email = 'rivalhive26@gmail.com';
-    const subject = encodeURIComponent(`RivalHive Project Brief - ${service}`);
-    const body = encodeURIComponent(`Hi RivalHive Team,\n\nI would like to get a quote for my project.\n\nName: ${name}\nContact: ${contact}\nService Needed: ${service}\n\nProject Details:\n${msg || 'No extra details added yet.'}\n\nPlease contact me with the next steps.\n\nThank you.`);
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
-    const mailtoUrl = `mailto:${email}?subject=${subject}&body=${body}`;
     button.textContent = 'Opening email...';
-    status.textContent = '✅ Your email is ready. Please press Send in your mail app.';
+    status.textContent = '✅ Your email is ready. Please press Send in Gmail or your mail app.';
     status.style.color = '#f5c518';
-    const opened = window.open(gmailUrl, '_blank', 'noopener');
-    if (!opened) window.location.href = mailtoUrl;
+    openEmailComposer({
+      subject: `RivalHive Project Brief - ${service}`,
+      body: `Hi RivalHive Team,\n\nI would like to get a quote for my project.\n\nName: ${name}\nContact: ${contact}\nService Needed: ${service}\n\nProject Details:\n${msg || 'No extra details added yet.'}\n\nPlease contact me with the next steps.\n\nThank you.`
+    });
     setTimeout(() => { button.textContent = 'Send Brief 🐝'; }, 1200);
   }
 
